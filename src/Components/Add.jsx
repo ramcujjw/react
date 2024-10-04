@@ -9,35 +9,36 @@ import IconButton from '@mui/material/IconButton';
 import { useState } from 'react';
 
 
-  
 
-const Add = () => {
-  const [employee, setEmployee ]= useState({
-    EmployeeId:'',
-    Name:'',
-    Designation:'',
-    Location:''
+
+const Add = ({person}) => {
+  const [employee, setEmployee] = useState({
+    empID: person.empID,
+    empName: person.empName,
+    department: person.department,
+    location: person.location
   })
 
-const fetchValue=(e)=>{
+  let fetchValue = (e) => {
     // console.log(e)
-    setEmployee({...employee,[e.target.name]:e.target.value})//... spread operator, employee object inu varunna changes append cheyum 
-}
+    setEmployee({ ...employee, [e.target.name]: e.target.value })//... spread operator, employee object inu varunna changes append cheyum 
+  }
 
-const saveData=(e)=>{
-  alert('Data submitted')
-}
+  let saveData = (e) => {
+    // alert('Data submitted')
+    console.log(employee)
+  }
   return (
-    
+
     <>
-    <h2>Employee Details</h2>
-    <TextField id="standard-basic" label="Employee Id" name="Employee Id" variant="standard" value={employee.EmployeeId} /><br />
-    <TextField id="standard-basic" label="Name" name="Name" variant="standard" value={employee.Name} onChange={fetchValue}/><br />
-    <TextField id="standard-basic" label="Designation" name="Designation" variant="standard" value ={employee.Designation} /><br />
-    <TextField id="standard-basic" label="Location" name="Location" variant="standard"value= {employee.Location}/>
-    <br />
-    
-    <button variant="submit-button" onClick={saveData}>Submit</button>
+      <h2>Employee Details</h2>
+      <TextField id="standard-basic" label="EmployeeId" name="EmployeeId" variant="standard" value={employee.empID} onChange={fetchValue} /><br />
+      <TextField id="standard-basic" label="Name" name="Name" variant="standard" value={employee.empName} onChange={fetchValue} /><br />
+      <TextField id="standard-basic" label="Designation" name="Designation" variant="standard" value={employee.department} onChange={fetchValue} /> <br />
+      <TextField id="standard-basic" label="Location" name="Location" variant="standard" value={employee.location} onChange={fetchValue} />
+      <br />
+
+      <button variant="submit-button" onClick={saveData}>Submit</button>
     </>
   )
 }
